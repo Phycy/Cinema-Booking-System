@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f9f9f9;
+        }
+        nav {
+            background: #222;
+            padding: 10px 20px;
+        }
+        nav a {
+            color: #fff;
+            margin-right: 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .booking-item {
+            background: #fff;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .booking-item p {
+            margin: 5px 0;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <a href="{{ path('home') }}">Home</a>
+        <a href="{{ path('movies') }}">Movies</a>
+        <a href="{{ path('booking') }}">Bookings</a>
+        <a href="{{ path('login') }}">Login</a>
+    </nav>
+
+    <div class="container">
+        <h1>{{ title }}</h1>
+        <div class="booking-item">
+            <p><strong>Movie:</strong> Avengers: Endgame</p>
+            <p><strong>Time:</strong> 7:00 PM</p>
+            <p><strong>Status:</strong> Confirmed ✅</p>
+        </div>
+        <div class="booking-item">
+            <p><strong>Movie:</strong> Joker</p>
+            <p><strong>Time:</strong> 9:00 PM</p>
+            <p><strong>Status:</strong> Pending ⏳</p>
+        </div>
+    </div>
+</body>
+</html>

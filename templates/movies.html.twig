@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f9f9f9;
+        }
+        nav {
+            background: #222;
+            padding: 10px 20px;
+        }
+        nav a {
+            color: #fff;
+            margin-right: 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .movie-list {
+            list-style: none;
+            padding: 0;
+        }
+        .movie-item {
+            background: #fff;
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .movie-item h2 {
+            margin: 0;
+            color: #444;
+        }
+        .movie-item p {
+            margin: 5px 0;
+            color: #666;
+        }
+        .btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 12px;
+            background: #ff4444;
+            color: #fff;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .btn:hover {
+            background: #cc0000;
+        }
+    </style>
+</head>
+
+
+<body>
+    <!-- Navbar -->
+    <nav>
+        <a href="{{ path('home') }}">Home</a>
+        <a href="{{ path('movies') }}">Movies</a>
+        <a href="{{ path('booking')}}">Bookings</a>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+        <h1>{{ title }}</h1>
+        <ul class="movie-list">
+            <li class="movie-item">
+                <h2>Avengers: Endgame</h2>
+                <p>Genre: Action, Sci-Fi</p>
+                <p>Time: 7:00 PM</p>
+                <a href="#" class="btn">Book Now</a>
+            </li>
+            <li class="movie-item">
+                <h2>Frozen II</h2>
+                <p>Genre: Animation, Adventure</p>
+                <p>Time: 5:00 PM</p>
+                <a href="#" class="btn">Book Now</a>
+            </li>
+            <li class="movie-item">
+                <h2>Joker</h2>
+                <p>Genre: Drama, Thriller</p>
+                <p>Time: 9:00 PM</p>
+                <a href="#" class="btn">Book Now</a>
+            </li>
+            <li class="movie-item">
+                <h2>Joker</h2>
+                <p>Genre: Drama, Thriller</p>
+                <p>Time: 9:00 PM</p>
+                <a href="#" class="btn">Book Now</a>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
