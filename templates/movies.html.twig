@@ -63,13 +63,13 @@
     </style>
 </head>
 
-
 <body>
     <!-- Navbar -->
     <nav>
         <a href="{{ path('home') }}">Home</a>
         <a href="{{ path('movies') }}">Movies</a>
         <a href="{{ path('booking')}}">Bookings</a>
+        <a href="{{ path('login')}}">Login</a>
     </nav>
 
     <!-- Page Content -->
@@ -80,25 +80,19 @@
                 <h2>Avengers: Endgame</h2>
                 <p>Genre: Action, Sci-Fi</p>
                 <p>Time: 7:00 PM</p>
-                <a href="#" class="btn">Book Now</a>
+                <a href="{{ path('booking', { movie: 'Avengers: Endgame', time: '7:00 PM' }) }}" class="btn">Book Now</a>
             </li>
             <li class="movie-item">
                 <h2>Frozen II</h2>
                 <p>Genre: Animation, Adventure</p>
                 <p>Time: 5:00 PM</p>
-                <a href="#" class="btn">Book Now</a>
+                <a href="{{ path('booking', { movie: 'Frozen II', time: '5:00 PM' }) }}" class="btn">Book Now</a>
             </li>
             <li class="movie-item">
                 <h2>Joker</h2>
                 <p>Genre: Drama, Thriller</p>
                 <p>Time: 9:00 PM</p>
-                <a href="#" class="btn">Book Now</a>
-            </li>
-            <li class="movie-item">
-                <h2>Joker</h2>
-                <p>Genre: Drama, Thriller</p>
-                <p>Time: 9:00 PM</p>
-                <a href="#" class="btn">Book Now</a>
+                <a href="{{ path('booking', { movie: 'Joker', time: '9:00 PM' }) }}" class="btn">Book Now</a>
             </li>
         </ul>
     </div>

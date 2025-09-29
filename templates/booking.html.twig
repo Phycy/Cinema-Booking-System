@@ -53,16 +53,18 @@
 
     <div class="container">
         <h1>{{ title }}</h1>
-        <div class="booking-item">
-            <p><strong>Movie:</strong> Avengers: Endgame</p>
-            <p><strong>Time:</strong> 7:00 PM</p>
-            <p><strong>Status:</strong> Confirmed ✅</p>
-        </div>
-        <div class="booking-item">
-            <p><strong>Movie:</strong> Joker</p>
-            <p><strong>Time:</strong> 9:00 PM</p>
-            <p><strong>Status:</strong> Pending ⏳</p>
-        </div>
+
+        {% if movie is defined and time is defined %}
+            <div class="booking-item">
+                <p><strong>Movie:</strong> {{ movie }}</p>
+                <p><strong>Time:</strong> {{ time }}</p>
+                <p><strong>Status:</strong> Confirmed ✅</p>
+            </div>
+        {% else %}
+            <p>No booking selected yet. Please choose a movie from the 
+                <a href="{{ path('movies') }}">Movies</a> page.
+            </p>
+        {% endif %}
     </div>
 </body>
 </html>

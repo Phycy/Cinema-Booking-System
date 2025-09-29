@@ -1,18 +1,4 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Cinema Booking System</title>
-</head>
-<body>
-    <h1>Welcome to {{ title }}!</h1>
-    <p>This is the homepage of your Cinema Booking System 🎬🍿</p>
-</body>
-</html>
-
-
-
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -95,7 +81,7 @@
     <div class="hero">
         <h2>Welcome to MovieTime 🎬</h2>
         <p>Book your favorite movies online with ease. Browse movies, pick your seats, and enjoy the show!</p>
-        <a href="#" class="btn">Browse Movies</a>
+        <a href="{{ path('movies') }}" class="btn">Browse Movies</a>
     </div>
 
     <footer>
@@ -103,3 +89,4 @@
     </footer>
 </body>
 </html>
+

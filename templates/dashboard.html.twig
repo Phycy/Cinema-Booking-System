@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <style>
+        body { font-family: Arial; background: #f9f9f9; }
+        .container { max-width: 600px; margin: 50px auto; background: #fff; padding: 20px; border-radius: 8px; }
+        .logout { color: red; text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="{{ path('home') }}">Home</a>
+        <a href="{{ path('movies') }}">Movies</a>
+        <a href="{{ path('booking') }}">Bookings</a>
+        <a href="{{ path('logout') }}" class="logout">Logout</a>
+    </nav>
+    <div class="container">
+        <h1>Welcome, {{ user.username }} 👋</h1>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p>You are now logged in! 🎉</p>
+    </div>
+</body>
+</html>
