@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ form.vars.value.id ? 'Edit Movie' : 'New Movie' }}{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/movies.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="container my-5">
+    <h1 class="text-center mb-4">{{ form.vars.value.id ? 'Edit Movie' : 'Add New Movie' }}</h1>
+
+    {{ form_start(form, {'attr': {'class': 'movie-form'}}) }}
+        <div class="form-group">
+            {{ form_label(form.title) }}
+            {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.genre) }}
+            {{ form_widget(form.genre, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.description) }}
+            {{ form_widget(form.description, {'attr': {'class': 'form-control', 'rows': 4}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.time) }}
+            {{ form_widget(form.time, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.date) }}
+            {{ form_widget(form.date, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.duration) }}
+            {{ form_widget(form.duration, {'attr': {'class': 'form-control'}}) }}
+        </div>
+
+        <div class="form-buttons mt-4">
+            <button type="submit" class="btn submit-btn">{{ form.vars.value.id ? 'Update' : 'Create' }}</button>
+            <a href="{{ path('app_cinema_index') }}" class="btn cancel-btn">Cancel</a>
+        </div>
+    {{ form_end(form) }}
+</div>
+{% endblock %}

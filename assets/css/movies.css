@@ -1,0 +1,174 @@
+/* Global Theme */
+body {
+    font-family: Arial, sans-serif;
+    background: #121212;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+header {
+    background: #e50914;
+    padding: 20px;
+    text-align: center;
+}
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+/* Navigation */
+nav {
+    background: #1f1f1f;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+nav a:hover {
+    color: #e50914;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 60px 20px;
+}
+.hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+/* Table */
+.container {
+    width: 90%;
+    margin: 0 auto;
+}
+.movies-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+.movies-table th, .movies-table td {
+    border: 1px solid #333;
+    padding: 10px;
+    text-align: center;
+}
+.movies-table th {
+    background: #e50914;
+    color: white;
+}
+.movies-table td {
+    background: #1f1f1f;
+    color: white;
+}
+.movies-table tr:hover td {
+    background: #2a2a2a;
+}
+.no-data {
+    text-align: center;
+    color: #aaa;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 8px 14px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-show {
+    background: #e50914;
+    color: #fff;
+}
+.btn-show:hover {
+    background: #b20710;
+}
+
+.btn-edit {
+    background: #333;
+    color: #fff;
+}
+.btn-edit:hover {
+    background: #e50914;
+}
+
+/* Forms */
+.movie-form {
+    width: 90%;
+    max-width: 600px;
+    background: #1f1f1f;
+    margin: 40px auto;
+    padding: 25px;
+    border-radius: 10px;
+    border: 1px solid #e50914;
+}
+.movie-form .form-group {
+    margin-bottom: 15px;
+}
+.movie-form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #e50914;
+}
+.movie-form input, .movie-form textarea, .movie-form select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    background: #121212;
+    color: #fff;
+}
+.form-buttons {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+.submit-btn {
+    background: #e50914;
+    color: #fff;
+    border: none;
+}
+.submit-btn:hover {
+    background: #b20710;
+}
+.cancel-btn {
+    background: #333;
+    color: #fff;
+}
+.cancel-btn:hover {
+    background: #e50914;
+}
+
+/* Footer */
+footer {
+    background: #1f1f1f;
+    text-align: center;
+    padding: 15px;
+    margin-top: 50px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero h2 {
+        font-size: 1.8rem;
+    }
+    .movies-table th, .movies-table td {
+        padding: 6px;
+    }
+}

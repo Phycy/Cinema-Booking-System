@@ -1,0 +1,152 @@
+/* General page styles */
+body {
+    background-color: white;
+    color: black;
+    font-family: Arial, sans-serif;
+}
+
+/* Header */
+.header h1 {
+    color: red;
+}
+
+.add-btn {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.add-btn:hover {
+    background-color: darkred;
+}
+
+/* Table */
+.movies-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.movies-table th, 
+.movies-table td {
+    border: 1px solid red;
+    padding: 10px;
+    text-align: center;
+}
+
+.movies-table th {
+    background-color: red;
+    color: white;
+}
+
+.movies-table td {
+    background-color: white;
+    color: black;
+}
+
+.movies-table tr:hover td {
+    background-color: #ffe5e5; /* Light red hover effect */
+}
+
+/* Buttons inside table */
+.btn {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.show-btn {
+    background-color: white;
+    color: red;
+    border: 1px solid red;
+}
+
+.show-btn:hover {
+    background-color: red;
+    color: white;
+}
+
+.edit-btn {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+}
+
+.edit-btn:hover {
+    background-color: black;
+    color: white;
+}
+
+.delete-btn {
+    background-color: white;
+    color: red;
+    border: 1px solid red;
+}
+
+.delete-btn:hover {
+    background-color: red;
+    color: white;
+}
+
+.cancel-btn {
+    background-color: gray;
+    color: white;
+    border: none;
+}
+
+.cancel-btn:hover {
+    background-color: darkgray;
+}
+
+/* Movie Form */
+.movie-form {
+    max-width: 600px;
+    margin: auto;
+    background-color: #fff0f0;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid red;
+}
+
+.movie-form .form-group {
+    margin-bottom: 15px;
+}
+
+.movie-form .form-group label {
+    font-weight: bold;
+    color: red;
+}
+
+.movie-form .form-control {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid red;
+    border-radius: 5px;
+}
+
+/* Form buttons */
+.form-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+    margin-top: 15px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .movies-table th, .movies-table td {
+        padding: 8px;
+    }
+    .add-btn, .btn {
+        padding: 6px 12px;
+    }
+}

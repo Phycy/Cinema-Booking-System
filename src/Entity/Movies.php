@@ -31,8 +31,8 @@ class Movies
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTime $date = null;
 
-    #[ORM\Column(type: Types::TIME_MUTABLE)]
-    private ?\DateTime $duration = null;
+    #[ORM\Column(length: 6)]
+    private ?string $duration = null;
 
     // Bidirectional relation to Showtime
     #[ORM\OneToMany(mappedBy: 'movie', targetEntity: Showtime::class, cascade: ['persist', 'remove'])]
@@ -51,11 +51,11 @@ class Movies
     public function getDescription(): ?string { return $this->description; }
     public function setDescription(string $description): static { $this->description = $description; return $this; }
     public function getTime(): ?\DateTime { return $this->time; }
-    public function setTime(\DateTime $time): static { $this->time = $time; return $this; }
+    public function setTime(?\DateTime $time): static { $this->time = $time; return $this; }
     public function getDate(): ?\DateTime { return $this->date; }
-    public function setDate(\DateTime $date): static { $this->date = $date; return $this; }
-    public function getDuration(): ?\DateTime { return $this->duration; }
-    public function setDuration(\DateTime $duration): static { $this->duration = $duration; return $this; }
+    public function setDate(?\DateTime $date): static { $this->date = $date; return $this; }
+    public function getDuration(): ?string { return $this->duration; }
+    public function setDuration(string $duration): static { $this->duration = $duration; return $this; }
 
     /** @return Collection<int, Showtime> */
     public function getShowtimes(): Collection { return $this->showtimes; }
