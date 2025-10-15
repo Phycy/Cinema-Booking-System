@@ -1,29 +1,59 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Show Movie{% endblock %}
+{% block title %}Movie Details{% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('css/movies.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin-base.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin-show.css') }}">
 {% endblock %}
 
 {% block body %}
-<div class="container my-5">
-    <h1 class="text-center mb-4">Movie Details</h1>
+<div class="admin-container">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="logo-container">
+            <img src="{{ asset('images/Brand LOGO GREY 1.2.png') }}" alt="Cinema Logo">
+            <div class="logo-text">🎬 Cinema Admin</div>
+        </div>
+        <ul>
+            <li><a href="{{ path('app_cinema_index') }}" class="active">Movies</a></li>
+            <li><a href="{{ path('app_category_index') }}">Categories</a></li>
+            <li><a href="{{ path('app_user_index') }}">Users</a></li>
+            <li><a href="{{ path('booking') }}">Bookings</a></li>
+        </ul>
+    </aside>
 
-    <div class="movie-details">
-        <p><strong>Title:</strong> {{ movie.title }}</p>
-        <p><strong>Genre:</strong> {{ movie.genre }}</p>
-        <p><strong>Description:</strong> {{ movie.description }}</p>
-        <p><strong>Time:</strong> {{ movie.time ? movie.time|date('H:i') : '-' }}</p>
-        <p><strong>Date:</strong> {{ movie.date ? movie.date|date('Y-m-d') : '-' }}</p>
-        <p><strong>Duration:</strong> {{ movie.duration ? movie.duration|date('H:i') : '-' }}</p>
-    </div>
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        <!-- TOP BAR -->
+        <div class="topbar">
+            <div class="title">Movie Details</div>
+            <div class="actions">
+                <a href="{{ path('app_cinema_index') }}" class="btn btn-secondary">← Back</a>
+                <a href="{{ path('logout') }}" class="btn btn-secondary">Logout</a>
+            </div>
+        </div>
 
-    <div class="form-buttons mt-4">
-        <a href="{{ path('app_cinema_edit', {'id': movie.id}) }}" class="btn edit-btn">Edit</a>
+        <!-- MOVIE DETAILS -->
+        <div class="content-body">
+            <div class="movie-details-card">
+                <h2>{{ movie.title }}</h2>
 
-        {{ include('cinema/_delete_form.html.twig') }}
-        <a href="{{ path('app_cinema_index') }}" class="btn cancel-btn">Back</a>
+                <div class="details-grid">
+                    <div><strong>Genre:</strong> {{ movie.category ? movie.category.name : '—' }}</div>
+                    <div><strong>Description:</strong> {{ movie.description ?: '—' }}</div>
+                    <div><strong>Showtime:</strong> {{ movie.time ? movie.time|date('H:i') : '—' }}</div>
+                    <div><strong>Date:</strong> {{ movie.date ? movie.date|date('Y-m-d') : '—' }}</div>
+                    <div><strong>Duration:</strong> {{ movie.duration ?: '—' }} mins</div>
+                </div>
+
+                <div class="form-buttons">
+                    <a href="{{ path('app_cinema_edit', {'id': movie.id}) }}" class="btn btn-primary">Edit</a>
+                    {{ include('cinema/_delete_form.html.twig') }}
+                    <a href="{{ path('app_cinema_index') }}" class="btn btn-secondary">Back</a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}

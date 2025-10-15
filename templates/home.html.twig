@@ -3,67 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Cinema Booking System</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #121212;
-            color: #fff;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background: #e50914;
-            padding: 20px;
-            text-align: center;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 2rem;
-        }
-        nav {
-            background: #1f1f1f;
-            padding: 10px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        nav a:hover {
-            color: #e50914;
-        }
-        .hero {
-            text-align: center;
-            padding: 60px 20px;
-        }
-        .hero h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-        }
-        .btn {
-            background: #e50914;
-            color: #fff;
-            padding: 12px 24px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-        }
-        .btn:hover {
-            background: #b20710;
-        }
-        footer {
-            background: #1f1f1f;
-            text-align: center;
-            padding: 15px;
-            margin-top: 50px;
-        }
+
+    <link rel="stylesheet" href="{{ asset('css/base.css') }}">
+
     </style>
 </head>
 <body>
@@ -79,7 +21,7 @@
     </nav>
 
     <div class="hero">
-        <h2>Welcome to MovieTime 🎬</h2>
+        <h2>Welcome to Creative Motion 🎬</h2>
         <p>Book your favorite movies online with ease. Browse movies, pick your seats, and enjoy the show!</p>
         <a href="{{ path('movies') }}" class="btn">Browse Movies</a>
     </div>

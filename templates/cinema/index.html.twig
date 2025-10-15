@@ -1,67 +1,82 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Movies Index{% endblock %}
-
-
-
-{% block body %}
-<header>
-    <h1>🎬 Movie Library</h1>
-</header>
-
-<nav>
-    <a href="{{ path('app_cinema_index') }}">Home</a>
-    <a href="{{ path('app_cinema_new') }}">Add Movie</a>
-</nav>
-
-<section class="hero">
-    <h2>All Movies</h2>
-    <p>Manage your collection.</p>
-</section>
-
-<div class="container">
-    <table class="movies-table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Title</th>
-                <th>Genre</th>
-                <th>Description</th>
-                <th>Time</th>
-                <th>Date</th>
-                <th>Duration</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for movie in movies %}
-            <tr>
-                <td>{{ movie.id }}</td>
-                <td>{{ movie.title }}</td>
-                <td>{{ movie.genre }}</td>
-                <td>{{ movie.description|length > 50 ? movie.description[:50] ~ '...' : movie.description }}</td>
-                <td>{{ movie.time ? movie.time|date('H:i') : '-' }}</td>
-                <td>{{ movie.date ? movie.date|date('Y-m-d') : '-' }}</td>
-                <td>{{ movie.duration ? movie.duration : '-' }}</td>
-                <td>
-                    <a href="{{ path('app_cinema_show', {'id': movie.id}) }}" class="btn btn-show">Show</a>
-                    <a href="{{ path('app_cinema_edit', {'id': movie.id}) }}" class="btn btn-edit">Edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="8" class="no-data">No movies found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-</div>
-
-<footer>
-    <p>&copy; 2025 Movie Library</p>
-</footer>
-{% endblock %}
+{% block title %}Movies Dashboard{% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('css/movies.css') }}">
+<link rel="stylesheet" href="{{ asset('css/admin-base.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="admin-container">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="logo-container">
+            <img src="{{ asset('images/Brand LOGO GREY 1.2.png') }}" alt="Cinema Logo">
+            <div class="logo-text">Cinema Admin</div>
+        </div>
+        <ul>
+            <li><a href="{{ path('app_cinema_index') }}" class="active">Movies</a></li>
+            <li><a href="{{ path('app_category_index') }}">Categories</a></li>
+            <li><a href="{{ path('app_user_index') }}">Users</a></li>
+            <li><a href="{{ path('booking') }}">Bookings</a></li>
+            <li><a href="{{ path('home') }}">Back to Home</a></li>
+        </ul>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        <!-- TOP BAR -->
+        <div class="topbar">
+            <div class="title">🎬 Movies Dashboard</div>
+            <div class="actions">
+                <a href="{{ path('app_cinema_new') }}" class="btn btn-primary">+ Add Movie</a>
+                <a href="{{ path('logout') }}" class="btn btn-secondary">Logout</a>
+            </div>
+        </div>
+
+        <!-- TABLE CONTENT -->
+        <div class="content-body">
+
+                <h2>All Movies</h2>
+                <p class="text-muted">Manage movie genres and their descriptions below.</p>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Category</th>
+                        <th>Time</th>
+                        <th>Date</th>
+                        <th>Duration</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for movie in movies %}
+                        <tr>
+                            <td>{{ movie.id }}</td>
+                            <td>{{ movie.title }}</td>
+                            <td>{{ movie.category ? movie.category.name : '—' }}</td>
+                            <td>{{ movie.time ? movie.time|date('H:i') : '—' }}</td>
+                            <td>{{ movie.date ? movie.date|date('Y-m-d') : '—' }}</td>
+                            <td>{{ movie.duration ?: '—' }}</td>
+                            <td>{{ movie.description ?: '—' }}</td>
+                            <td>
+                                <a href="{{ path('app_cinema_show', {id: movie.id}) }}" class="btn btn-blue">View</a>
+                                <a href="{{ path('app_cinema_edit', {id: movie.id}) }}" class="btn btn-primary">Edit</a>
+                                {{ include('cinema/_delete_form.html.twig') }}
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="8" class="no-data">No movies found</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 {% endblock %}

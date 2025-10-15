@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Showtime index{% endblock %}
+
+{% block body %}
+    <h1>Showtime index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>HallNumber</th>
+                <th>DateTime</th>
+                <th>TotalSeats</th>
+                <th>AvailableSeats</th>
+                <th>TicketPrice</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for showtime in showtimes %}
+            <tr>
+                <td>{{ showtime.id }}</td>
+                <td>{{ showtime.hallNumber }}</td>
+                <td>{{ showtime.dateTime ? showtime.dateTime|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ showtime.totalSeats }}</td>
+                <td>{{ showtime.availableSeats }}</td>
+                <td>{{ showtime.ticketPrice }}</td>
+                <td>
+                    <a href="{{ path('app_showtime_show', {'id': showtime.id}) }}">show</a>
+                    <a href="{{ path('app_showtime_edit', {'id': showtime.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_showtime_new') }}">Create new</a>
+{% endblock %}

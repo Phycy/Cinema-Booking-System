@@ -107,6 +107,61 @@ nav a:hover {
     background: #e50914;
 }
 
+
+
+
+
+
+
+
+/* public/css/movies.css /
+
+.movie-form .form-group {
+    margin-bottom: 20px;
+}
+
+.movie-form label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.movie-form .form-control {
+    width: 96%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #333;
+    background: #222;
+    color: #fff;
+    transition: 0.3s;
+}
+
+.movie-form .form-control:focus {
+    border-color: #e50914;
+    box-shadow: 0 0 0 2px rgba(229, 9, 20, 0.2);
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.btn.submit-btn {
+    background: var(--color-primary);
+}
+
+.btn.submit-btn:hover {
+    background: var(--color-accent);
+}
+
+*/
+
+
+
+
+
 /* Forms */
 .movie-form {
     width: 90%;

@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Showtime{% endblock %}
+
+{% block body %}
+    <h1>Showtime</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ showtime.id }}</td>
+            </tr>
+            <tr>
+                <th>HallNumber</th>
+                <td>{{ showtime.hallNumber }}</td>
+            </tr>
+            <tr>
+                <th>DateTime</th>
+                <td>{{ showtime.dateTime ? showtime.dateTime|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>TotalSeats</th>
+                <td>{{ showtime.totalSeats }}</td>
+            </tr>
+            <tr>
+                <th>AvailableSeats</th>
+                <td>{{ showtime.availableSeats }}</td>
+            </tr>
+            <tr>
+                <th>TicketPrice</th>
+                <td>{{ showtime.ticketPrice }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_showtime_index') }}">back to list</a>
+
+    <a href="{{ path('app_showtime_edit', {'id': showtime.id}) }}">edit</a>
+
+    {{ include('showtime/_delete_form.html.twig') }}
+{% endblock %}

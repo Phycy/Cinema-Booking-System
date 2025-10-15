@@ -18,11 +18,12 @@ class HomeController extends AbstractController
     }
 
     #[Route('/movies', name: 'movies')]
-    public function movies(): Response
+    public function movies(\App\Repository\MoviesRepository $moviesRepository): Response
     {
-        return $this->render('movies.html.twig', [
-            'title' => 'Movies List',
-        ]);
+    return $this->render('movies.html.twig', [
+        'title' => 'Movies List',
+        'movies' => $moviesRepository->findAll(), // <-- pulls all movies from DB
+    ]);
     }
 
     #[Route('/booking', name: 'booking')]
@@ -53,35 +54,9 @@ class HomeController extends AbstractController
             }
         }
 
-        return $this->render('login.html.twig', [
+        return $this->render('security/login.html.twig', [
             'title' => 'Login',
             'error' => $error
-        ]);
-    }
-
-    #[Route('/register', name: 'register')]
-    public function register(Request $request): Response
-    {
-        $session = $request->getSession();
-        $message = null;
-
-        if ($request->isMethod('POST')) {
-            $username = $request->request->get('username');
-            $password = $request->request->get('password');
-            $email = $request->request->get('email');
-
-            $session->set('user', [
-                'username' => $username,
-                'password' => $password,
-                'email' => $email,
-            ]);
-
-            $message = "Account created successfully! You can now log in.";
-        }
-
-        return $this->render('register.html.twig', [
-            'title' => 'Register',
-            'message' => $message
         ]);
     }
 
@@ -110,6 +85,8 @@ class HomeController extends AbstractController
 
         return $this->redirectToRoute('home');
     }
+
+
 }
 
 

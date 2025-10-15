@@ -1,0 +1,40 @@
+.movie-details-card {
+    background: var(--bg-card);
+    padding: 30px;
+    border-radius: var(--radius);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+    max-width: 800px;
+    margin: 0 auto;
+    color: var(--color-text);
+}
+
+.movie-details-card h2 {
+    color: var(--color-primary);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.details-grid div {
+    background: #1f1f1f;
+    padding: 12px;
+    border-radius: var(--radius);
+    border: 1px solid #333;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.form-buttons .btn {
+    min-width: 100px;
+    text-align: center;
+}

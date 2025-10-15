@@ -81,4 +81,11 @@ final class CinemaController extends AbstractController
 
         return $this->redirectToRoute('app_cinema_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('/back-home', name: 'back_home')] 
+    public function backHome(): Response { 
+        return $this->redirectToRoute('home'); 
+    }
+
+
 }

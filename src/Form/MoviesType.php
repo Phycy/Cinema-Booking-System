@@ -3,10 +3,98 @@
 namespace App\Form;
 
 use App\Entity\Movies;
+use App\Entity\Category;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+
+class MoviesType extends AbstractType
+{
+    public function buildForm(FormBuilderInterface $builder, array $options): void
+    {
+        $builder
+            ->add('title', null, [
+                'constraints' => [
+                    new Assert\NotBlank(['message' => 'Title cannot be empty.']),
+                    new Assert\Length([
+                        'min' => 2,
+                        'max' => 100,
+                        'minMessage' => 'The title must be at least {{ limit }} characters long.',
+                        'maxMessage' => 'The title cannot exceed {{ limit }} characters.',
+                    ]),
+                ],
+            ])
+            // ✅ Use dropdown for Category (Genre)
+            ->add('category', EntityType::class, [
+                'class' => Category::class,
+                'choice_label' => 'name', // shows the category name
+                'placeholder' => 'Select a genre',
+                'constraints' => [
+                    new Assert\NotBlank(['message' => 'Genre is required.']),
+                ],
+            ])
+            ->add('description', null, [
+                'constraints' => [
+                    new Assert\NotBlank(['message' => 'Description cannot be empty.']),
+                    new Assert\Length([
+                        'min' => 10,
+                        'minMessage' => 'Description must be at least {{ limit }} characters long.',
+                    ]),
+                ],
+            ])
+            ->add('time', null, [
+                'constraints' => [
+                    new Assert\NotBlank(['message' => 'Time is required.']),
+                ],
+            ])
+            ->add('date', DateType::class, [
+                'widget' => 'single_text',
+                'input' => 'datetime',
+                'constraints' => [
+                    new Assert\NotBlank(['message' => 'Date is required.']),
+                ],
+            ])
+            ->add('duration', null, [
+                'constraints' => [
+                    new Assert\NotBlank(['message' => 'Duration is required.']),
+                    new Assert\Regex([
+                        'pattern' => '/^\d{1,2}:\d{2}$/',
+                        'message' => 'Please enter duration in HH:MM format (e.g. 1:20 or 02:05).',
+                    ]),
+                ],
+            ]);
+    }
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            'data_class' => Movies::class,
+        ]);
+    }
+}
+
+
+
+
+
+
+
+
+/*
+<?php
+
+
+namespace App\Form;
+
+use App\Entity\Movies;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 
 class MoviesType extends AbstractType
@@ -39,15 +127,19 @@ class MoviesType extends AbstractType
                 ]),
             ],
         ])
+        
         ->add('time', null, [
             'constraints' => [
                 new Assert\NotBlank(['message' => 'Time is required.']),
             ],
         ])
-        ->add('date', null, [
-            'constraints' => [
+        
+
+        ->add('date', DateType::class, [
+           'widget' => 'single_text',
+           'input' => 'datetime',
+           'constraints' => [
                 new Assert\NotBlank(['message' => 'Date is required.']),
-                new Assert\Date(['message' => 'Please enter a valid date.']),
             ],
         ])
 
@@ -59,12 +151,12 @@ class MoviesType extends AbstractType
                 'message' => 'Please enter duration in HH:MM format (e.g. 1:20 or 02:05).',
                 ]),
             ],
+
             
         ]);
 }
 
 }
-
 
 
 

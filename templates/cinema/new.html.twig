@@ -3,77 +3,103 @@
 {% block title %}{{ form.vars.value.id ? 'Edit Movie' : 'New Movie' }}{% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('css/movies.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin-base.css') }}">
 {% endblock %}
 
 {% block body %}
-<div class="container my-5">
-    <h1 class="text-center mb-4">{{ form.vars.value.id ? 'Edit Movie' : 'Add New Movie' }}</h1>
+<div class="admin-container">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="logo-container">
+            <img src="{{ asset('images/Brand LOGO GREY 1.2.png') }}" alt="Cinema Logo">
+            <div class="logo-text">🎬 Cinema Admin</div>
+        </div>
+        <ul>
+            <li><a href="{{ path('app_cinema_index') }}" class="active">Movies</a></li>
+            <li><a href="{{ path('app_category_index') }}">Categories</a></li>
+            <li><a href="{{ path('app_user_index') }}">Users</a></li>
+            <li><a href="{{ path('booking') }}">Bookings</a></li>
+        </ul>
+    </aside>
 
-    {{ form_start(form, {'attr': {'class': 'movie-form', 'novalidate': 'novalidate'}}) }}
-    
-    <div class="form-group mb-3">
-        {{ form_label(form.title) }}
-        {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
-        <div class="text-danger small">{{ form_errors(form.title) }}</div>
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        <!-- TOP BAR -->
+        <div class="topbar">
+            <div class="title">{{ form.vars.value.id ? 'Edit Movie' : 'Add New Movie' }}</div>
+            <div class="actions">
+                <a href="{{ path('app_cinema_index') }}" class="btn btn-secondary">← Back</a>
+                <a href="{{ path('logout') }}" class="btn btn-secondary">Logout</a>
+            </div>
+        </div>
+
+        <!-- FORM SECTION -->
+        <div class="content-body">
+            <div class="form-container">
+                {{ form_start(form, {'attr': {'class': 'movie-form', 'novalidate': 'novalidate'}}) }}
+
+                <div class="form-group">
+                    {{ form_label(form.title, 'Movie Title') }}
+                    {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+                    <div class="text-danger small">{{ form_errors(form.title) }}</div>
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.category, 'Category') }}
+                    {{ form_widget(form.category, {'attr': {'class': 'form-control'}}) }}
+                    <div class="text-danger small">{{ form_errors(form.category) }}</div>
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.description, 'Description') }}
+                    {{ form_widget(form.description, {'attr': {'class': 'form-control', 'rows': 4}}) }}
+                    <div class="text-danger small">{{ form_errors(form.description) }}</div>
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.time, 'Showtime') }}
+                    {{ form_widget(form.time, {'attr': {'class': 'form-control'}}) }}
+                    <div class="text-danger small">{{ form_errors(form.time) }}</div>
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.date, 'Date') }}
+                    {{ form_widget(form.date, {'attr': {'class': 'form-control'}}) }}
+                    <div class="text-danger small">{{ form_errors(form.date) }}</div>
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.duration, 'Duration (mins)') }}
+                    {{ form_widget(form.duration, {'attr': {'class': 'form-control'}}) }}
+                    <div class="text-danger small">{{ form_errors(form.duration) }}</div>
+                </div>
+
+                <div class="form-buttons">
+                    <button type="submit" class="btn btn-primary">
+                        {{ form.vars.value.id ? 'Update Movie' : 'Create Movie' }}
+                    </button>
+                    <a href="{{ path('app_cinema_index') }}" class="btn btn-secondary">Cancel</a>
+                </div>
+
+                {{ form_end(form) }}
+            </div>
+        </div>
     </div>
-
-    <div class="form-group mb-3">
-        {{ form_label(form.genre) }}
-        {{ form_widget(form.genre, {'attr': {'class': 'form-control'}}) }}
-        <div class="text-danger small">{{ form_errors(form.genre) }}</div>
-    </div>
-
-    <div class="form-group mb-3">
-        {{ form_label(form.description) }}
-        {{ form_widget(form.description, {'attr': {'class': 'form-control', 'rows': 4}}) }}
-        <div class="text-danger small">{{ form_errors(form.description) }}</div>
-    </div>
-
-    <div class="form-group mb-3">
-        {{ form_label(form.time) }}
-        {{ form_widget(form.time, {'attr': {'class': 'form-control'}}) }}
-        <div class="text-danger small">{{ form_errors(form.time) }}</div>
-    </div>
-
-    <div class="form-group mb-3">
-        {{ form_label(form.date) }}
-        {{ form_widget(form.date, {'attr': {'class': 'form-control'}}) }}
-        <div class="text-danger small">{{ form_errors(form.date) }}</div>
-    </div>
-
-    <div class="form-group mb-3">
-        {{ form_label(form.duration) }}
-        {{ form_widget(form.duration, {'attr': {'class': 'form-control'}}) }}
-        <div class="text-danger small">{{ form_errors(form.duration) }}</div>
-    </div>
-
-    <div class="form-buttons mt-4">
-        <button type="submit" class="btn submit-btn">{{ form.vars.value.id ? 'Update' : 'Create' }}</button>
-        <a href="{{ path('app_cinema_index') }}" class="btn cancel-btn">Cancel</a>
-    </div>
-
-    {{ form_end(form) }}
 </div>
 
+<!-- SCRIPT: Auto focus next input -->
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-    {#const inputs = document.querySelectorAll("input, textarea");#}
+document.addEventListener("DOMContentLoaded", () => {
     const inputs = document.querySelectorAll(".movie-form input, .movie-form textarea");
-
     inputs.forEach((input, index) => {
-        input.addEventListener("keydown", function(event) {
-            if (event.key === "Enter") {
-                event.preventDefault(); // stop form from submitting
+        input.addEventListener("keydown", e => {
+            if (e.key === "Enter") {
+                e.preventDefault();
                 const next = inputs[index + 1];
-                if (next) {
-                    next.focus(); // move to the next input
-                }
+                if (next) next.focus();
             }
         });
     });
 });
 </script>
-
 {% endblock %}
-

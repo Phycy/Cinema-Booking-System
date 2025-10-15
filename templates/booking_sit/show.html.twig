@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}BookingSit{% endblock %}
+
+{% block body %}
+    <h1>BookingSit</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ booking_sit.id }}</td>
+            </tr>
+            <tr>
+                <th>SeatNumber</th>
+                <td>{{ booking_sit.seatNumber }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ booking_sit.status }}</td>
+            </tr>
+            <tr>
+                <th>UserName</th>
+                <td>{{ booking_sit.userName }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ booking_sit.createdAt ? booking_sit.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_booking_sit_index') }}">back to list</a>
+
+    <a href="{{ path('app_booking_sit_edit', {'id': booking_sit.id}) }}">edit</a>
+
+    {{ include('booking_sit/_delete_form.html.twig') }}
+{% endblock %}

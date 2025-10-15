@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Category{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/admin-base.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/movies.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="admin-container">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="logo-container">
+            <img src="{{ asset('images/Brand LOGO GREY 1.2.png') }}" alt="Cinema Logo">
+            <div class="logo-text">🎬 Cinema Admin</div>
+        </div>
+        <ul>
+            <li><a href="{{ path('app_cinema_index') }}">Movies</a></li>
+            <li><a href="{{ path('app_category_index') }}" class="active">Categories</a></li>
+            <li><a href="{{ path('app_user_index') }}">Users</a></li>
+            <li><a href="{{ path('booking') }}">Bookings</a></li>
+        </ul>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        <!-- TOP BAR -->
+        <div class="topbar">
+            <div class="title">Edit Category</div>
+            <div class="actions">
+                <a href="{{ path('app_category_index') }}" class="btn btn-secondary">← Back</a>
+                <a href="{{ path('logout') }}" class="btn btn-secondary">Logout</a>
+            </div>
+        </div>
+
+        <!-- FORM SECTION -->
+        <div class="content-body">
+            <div class="form-container">
+                {{ form_start(form, {'attr': {'class': 'category-form', 'novalidate': 'novalidate'}}) }}
+
+                <div class="form-group">
+                    {{ form_label(form.name, 'Category Name') }}
+                    {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.discription, 'Description') }}
+                    {{ form_widget(form.discription, {'attr': {'class': 'form-control', 'rows': 4}}) }}
+                </div>
+
+                <div class="form-buttons">
+                    <button type="submit" class="btn btn-primary">Update Category</button>
+                    <a href="{{ path('app_category_index') }}" class="btn btn-secondary">Cancel</a>
+                </div>
+
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

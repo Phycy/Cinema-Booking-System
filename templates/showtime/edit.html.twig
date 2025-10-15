@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Showtime{% endblock %}
+
+{% block body %}
+    <h1>Edit Showtime</h1>
+
+    {{ include('showtime/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_showtime_index') }}">back to list</a>
+
+    {{ include('showtime/_delete_form.html.twig') }}
+{% endblock %}

@@ -76,24 +76,17 @@
     <div class="container">
         <h1>{{ title }}</h1>
         <ul class="movie-list">
-            <li class="movie-item">
-                <h2>Avengers: Endgame</h2>
-                <p>Genre: Action, Sci-Fi</p>
-                <p>Time: 7:00 PM</p>
-                <a href="{{ path('booking', { movie: 'Avengers: Endgame', time: '7:00 PM' }) }}" class="btn">Book Now</a>
-            </li>
-            <li class="movie-item">
-                <h2>Frozen II</h2>
-                <p>Genre: Animation, Adventure</p>
-                <p>Time: 5:00 PM</p>
-                <a href="{{ path('booking', { movie: 'Frozen II', time: '5:00 PM' }) }}" class="btn">Book Now</a>
-            </li>
-            <li class="movie-item">
-                <h2>Joker</h2>
-                <p>Genre: Drama, Thriller</p>
-                <p>Time: 9:00 PM</p>
-                <a href="{{ path('booking', { movie: 'Joker', time: '9:00 PM' }) }}" class="btn">Book Now</a>
-            </li>
+            {% for movie in movies %}
+                <li class="movie-item">
+                <h2>{{ movie.title }}</h2>
+                <p>Genre: {{ movie.category ? movie.category.name : '-' }}</p>
+                <p>Time: {{ movie.time ? movie.time|date('H:i') : '-' }}</p>
+                <p>Date: {{ movie.date ? movie.date|date('Y-m-d') : '-' }}</p>
+                <a href="{{ path('booking', { movie: movie.title, time: movie.time ? movie.time|date('H:i') : '' }) }}" class="btn">Book Now</a>
+                </li>
+            {% else %}
+                <li>No movies found</li>
+            {% endfor %}
         </ul>
     </div>
 </body>

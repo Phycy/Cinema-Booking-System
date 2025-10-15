@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User Management{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/admin-base.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="admin-container">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="logo-container">
+            <img src="{{ asset('images/Brand LOGO GREY 1.2.png') }}" alt="Cinema Logo">
+            <div class="logo-text">Cinema Admin</div>
+        </div>
+        <ul>
+            <li><a href="{{ path('app_cinema_index') }}">Movies</a></li>
+            <li><a href="{{ path('app_category_index') }}">Categories</a></li>
+            <li><a href="{{ path('app_user_index') }}" class="active">Users</a></li>
+            <li><a href="{{ path('booking') }}">Bookings</a></li>
+        </ul>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        <!-- TOP BAR -->
+        <div class="topbar">
+            <div class="title">User Management</div>
+            <div class="actions">
+                <a href="{{ path('app_user_new') }}" class="btn btn-primary">+ Add User</a>
+                <a href="{{ path('logout') }}" class="btn btn-secondary">Logout</a>
+            </div>
+        </div>
+
+        <!-- USER TABLE -->
+        <div class="content-body">
+            <div class="card">
+                <h2>All Users</h2>
+                <p class="text-muted">Manage users and their roles below.</p>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Email</th>
+                            <th>Roles</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                            <tr>
+                                <td>{{ user.id }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>{{ user.roles|join(', ') }}</td>
+                                <td>
+                                    <a href="{{ path('app_user_show', {'id': user.id}) }}" class="btn btn-blue">Show</a>
+                                    <a href="{{ path('app_user_edit', {'id': user.id}) }}" class="btn btn-primary">Edit</a>
+
+                                    <form method="post" action="{{ path('app_user_delete', {'id': user.id}) }}" style="display:inline;" onsubmit="return confirm('Are you sure?');">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+                                        <button class="btn btn-del">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="4" class="no-data">No users found</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

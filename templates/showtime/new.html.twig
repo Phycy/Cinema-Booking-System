@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Showtime{% endblock %}
+
+{% block body %}
+    <h1>Create new Showtime</h1>
+
+    {{ include('showtime/_form.html.twig') }}
+
+    <a href="{{ path('app_showtime_index') }}">back to list</a>
+{% endblock %}
