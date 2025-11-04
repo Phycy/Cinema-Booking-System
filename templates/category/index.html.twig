@@ -4,6 +4,9 @@
 
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('css/admin-base.css') }}">
+
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 {% endblock %}
 
 {% block body %}
@@ -73,4 +76,26 @@
         </div>
     </div>
 </div>
+
+
+<!-- jQuery and DataTables JS -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    $('.table').DataTable({
+        "paging": true,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "columnDefs": [
+            { "orderable": true, "targets": [1,2] } // only category name and description sortable
+        ]
+    });
+});
+</script>
+
+
+
 {% endblock %}
